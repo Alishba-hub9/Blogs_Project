@@ -1,0 +1,76 @@
+@use "base/typography.scss";
+@use "abstracts/functions";
+@use "abstracts/mixins";
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  background: url(../img/home-bg.jpg);
+  background-size: cover;
+  padding: functions.rem(220) 0;
+  background-position: center;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 998;
+    bottom: 0;
+    background-color: #212529;
+    opacity: 0.5;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1999;
+    font-family: "Open Sans", sans-serif;
+    h1 {
+      font-size: functions.rem(80);
+      font-weight: 800;
+    }
+    p {
+      font-size: functions.rem(24);
+      font-weight: 300;
+      margin-top: 10px;
+    }
+  }
+}
+
+@include mixins.responsive("lg-devices") {
+  .hero-section {
+    .hero-content {
+      h1 {
+        font-size: functions.rem(64);
+      }
+      p {
+        font-size: functions.rem(18);
+      }
+    }
+  }
+}
+
+@include mixins.responsive("md-devices") {
+  .hero-section {
+    .hero-content {
+      h1 {
+        font-size: functions.rem(58);
+      }
+      p {
+        font-size: functions.rem(15);
+      }
+    }
+  }
+}
+
+@include mixins.responsive("sm-devices") {
+  .hero-section {
+    .hero-content {
+      h1 {
+        font-size: functions.rem(45);
+      }
+      p {
+        font-size: functions.rem(14);
+      }
+    }
+  }
+}

@@ -1,0 +1,105 @@
+@use "abstracts/colors";
+@use "abstracts/mixins";
+@use "abstracts/functions";
+
+.wrapper-register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: functions.rem(40) 0;
+
+  .container {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .register-content {
+    background-color: colors.$accent-light-color;
+    padding: functions.rem(40);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+
+    h1 {
+      font-size: functions.rem(29);
+      margin-bottom: functions.rem(16);
+      color: colors.$soft-black;
+    }
+
+    p {
+      font-size: functions.rem(15);
+      line-height: 20px;
+      color: #666;
+      margin-bottom: functions.rem(30);
+      padding: 0;
+    }
+
+    .register-form {
+      width: 100%;
+      margin: 0;
+
+      input,
+      button {
+        width: 100%;
+        border: 1px solid colors.$input-border-color;
+        border-radius: 6px;
+      }
+
+      input {
+        padding: functions.rem(14);
+        margin-bottom: functions.rem(16);
+        font-size: functions.rem(16);
+
+        &:focus {
+          outline: none;
+          border-color: colors.$primary-color;
+          box-shadow: 0 0 5px rgba(0, 119, 190, 0.3);
+        }
+      }
+
+      button {
+        background: linear-gradient(to bottom, colors.$primary-color, colors.$primary-color-dark);
+        padding: functions.rem(18) 0;
+        color: colors.$accent-light-color;
+        border: none;
+        font-size: functions.rem(16);
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+}
+
+@include mixins.responsive("md-devices") {
+  .wrapper-register-page {
+    .register-content {
+      padding: functions.rem(18);
+      h1 {
+        font-size: functions.rem(28);
+      }
+      p {
+        font-size: functions.rem(14);
+      }
+      .register-form {
+        button {
+          padding: functions.rem(14) 0;
+        }
+      }
+    }
+  }
+}
+
+@include mixins.responsive("xxs-devices") {
+  .wrapper-register-page {
+    .register-content {
+      p {
+        font-size: functions.rem(13);
+      }
+    }
+  }
+}

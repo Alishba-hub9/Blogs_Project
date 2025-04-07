@@ -1,0 +1,462 @@
+@use "abstracts/colors";
+@use "abstracts/functions";
+@use "abstracts/mixins";
+
+.dashboard-container {
+  .navbar-dashboard {
+    background-color: colors.$soft-black;
+    justify-content: space-between;
+    padding: functions.rem(20) functions.rem(40);
+    .menu-with-profile-dashboard {
+      display: flex;
+      align-items: center;
+      gap: 35px;
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: 600;
+        border-radius: 7px;
+        color: colors.$accent-light-color;
+
+        svg {
+          font-size: functions.rem(30);
+        }
+
+        span {
+          font-size: functions.rem(18);
+        }
+      }
+      .navbar-toggler {
+        background-color: colors.$accent-light-color;
+      }
+    }
+    .navbar-logo-dashboard {
+      font-size: functions.rem(22);
+      font-weight: 800;
+      color: colors.$accent-light-color;
+    }
+  }
+
+  .sidebar-collapse-dashboard {
+    background-color: colors.$dark-primary;
+    color: colors.$accent-light-color;
+    padding: functions.rem(30);
+    z-index: 1000;
+    width: 245px;
+    height: calc(100vh - 55px);
+    position: fixed;
+    left: -280px;
+    top: 75px;
+    transition: left 0.3s ease-in-out;
+
+    &.show {
+      left: 0;
+    }
+
+    .sidebar-nav {
+      .nav-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: functions.rem(24);
+        color: colors.$accent-light-color;
+        text-decoration: none;
+        gap: 5px;
+        border-radius: 5px;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .main-content {
+    padding: functions.rem(60);
+    margin-top: functions.rem(56);
+    transition: margin-left 0.3s ease-in-out;
+  }
+
+  .sidebar-collapse-dashboard.show ~ .main-content {
+    margin-left: 210px;
+    transition: margin-left 0.3s ease-in-out;
+  }
+
+  .content-area {
+    background: colors.$accent-light-color;
+    padding: functions.rem(20);
+    border-radius: 8px;
+
+    .heading-with-button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h1 {
+        font-size: functions.rem(36);
+        font-weight: 700;
+      }
+
+      a {
+        text-decoration: none;
+
+        .create-blog-btn {
+          display: flex;
+          align-items: center;
+          background: #4a8a65;
+          padding: functions.rem(15);
+          border: none;
+          border-radius: 5px;
+          gap: 5px;
+          cursor: pointer;
+          transition: 0.3s;
+          color: colors.$accent-light-color;
+
+          &:hover {
+            background: #36724e;
+          }
+        }
+      }
+    }
+
+    .dashboard-blogs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 20px;
+      padding: functions.rem(20);
+
+      &.edit-mode-active {
+        display: flex;
+        flex-direction: column;
+        white-space: nowrap;
+      }
+
+      .blog-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: functions.rem(20);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: colors.$body-background;
+        transition: transform 0.3s ease;
+        width: 100%;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .text-controller-div {
+          display: -webkit-box;
+          -webkit-line-clamp: 6;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        h3 {
+          margin-top: 0;
+          margin-bottom: functions.rem(10);
+          font-size: 1.3em;
+          color: colors.$soft-black;
+        }
+
+        p {
+          margin-bottom: functions.rem(15);
+          line-height: 1.6;
+          color: #555;
+        }
+
+        .actions {
+          display: flex;
+          justify-content: flex-end;
+          gap: 10px;
+          margin-top: 15px;
+
+          button {
+            padding: functions.rem(10) functions.rem(15);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: functions.rem(14);
+            transition: background-color 0.3s ease;
+          }
+
+          .edit-btn {
+            background-color: #4caf50;
+            color: colors.$accent-light-color;
+
+            &:hover {
+              background-color: #45a049;
+            }
+          }
+
+          .delete-btn {
+            background-color: #f44336;
+            color: colors.$accent-light-color;
+
+            &:hover {
+              background-color: #d32f2f;
+            }
+          }
+        }
+
+        .edit-mode {
+          display: none;
+          flex-direction: column;
+          gap: 10px;
+
+          h3 {
+            font-weight: 500;
+          }
+
+          label {
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 3px;
+            font-size: 0.9rem;
+          }
+
+          input,
+          textarea {
+            width: 100%;
+            padding: functions.rem(10);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: functions.rem(14);
+            margin-bottom: 8px;
+          }
+
+          textarea {
+            resize: vertical;
+            min-height: 80px;
+            overflow-x: hidden;
+          }
+
+          .save-btn,
+          .cancel-btn {
+            background: colors.$primary-color;
+            color: colors.$accent-light-color;
+            border: none;
+            padding: functions.rem(10) functions.rem(12);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: auto;
+            align-self: flex-end;
+            font-size: 0.9rem;
+
+            &:hover {
+              background: colors.$primary-color-dark;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.no-blogs-message {
+  text-align: center;
+  font-size: functions.rem(19);
+  color: #888;
+  padding: 0 0 functions.rem(12) 0;
+  border-radius: 8px;
+}
+
+@include mixins.responsive("lg-devices") {
+  .dashboard-container {
+    .sidebar-collapse-dashboard.show ~ .main-content {
+      margin-left: 235px;
+    }
+    .main-content {
+      padding: functions.rem(40);
+      .heading-with-button {
+        h1 {
+          font-size: functions.rem(30);
+        }
+        a {
+          font-size: functions.rem(14);
+          .create-blog-btn {
+            padding: functions.rem(10);
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mixins.responsive("md-devices") {
+  .dashboard-container {
+    .navbar-dashboard {
+      padding: functions.rem(20) functions.rem(40);
+      .menu-with-profile-dashboard {
+        gap: 25px;
+        .navbar-toggler {
+          span {
+            height: 29px;
+            width: 29px;
+          }
+        }
+        .user-info {
+          svg {
+            font-size: functions.rem(20);
+          }
+
+          span {
+            font-size: functions.rem(16);
+          }
+        }
+      }
+      .navbar-logo-dashboard {
+        font-size: functions.rem(17);
+      }
+    }
+    .sidebar-collapse-dashboard {
+      width: 100%;
+      height: auto;
+      left: 0;
+      top: -100%;
+      padding: functions.rem(10) functions.rem(42) 0;
+      background-color: colors.$soft-black;
+      transition: top 0.3s ease-in-out;
+      z-index: 1001;
+
+      &.show {
+        top: 75px;
+      }
+    }
+
+    .main-content {
+      padding: functions.rem(25);
+      .heading-with-button {
+        h1 {
+          font-size: functions.rem(28);
+        }
+      }
+      .dashboard-blogs,
+      .blog-card {
+        padding: functions.rem(12);
+      }
+    }
+
+    .sidebar-collapse-dashboard.show ~ .main-content {
+      margin-left: 0;
+    }
+  }
+}
+
+@include mixins.responsive("sm-devices") {
+  .dashboard-container {
+    .navbar-dashboard {
+      .menu-with-profile-dashboard {
+        .navbar-toggler {
+          padding: functions.rem(4);
+          span {
+            height: 29px;
+            width: 29px;
+          }
+        }
+        .user-info {
+          svg {
+            font-size: functions.rem(20);
+          }
+
+          span {
+            font-size: functions.rem(16);
+          }
+        }
+      }
+      .navbar-logo-dashboard {
+        font-size: functions.rem(19);
+      }
+    }
+    .main-content {
+      padding: functions.rem(14);
+      margin-top: functions.rem(100);
+      .content-area {
+        padding: functions.rem(14);
+      }
+    }
+  }
+  .no-blogs-message {
+    font-size: functions.rem(14);
+  }
+}
+
+@include mixins.responsive("xs-devices") {
+  .dashboard-container {
+    .navbar-dashboard {
+      padding: functions.rem(20) functions.rem(10);
+      .navbar-logo-dashboard {
+        font-size: functions.rem(16);
+      }
+      .menu-with-profile-dashboard {
+        gap: 15px;
+        .user-info {
+          span {
+            font-size: functions.rem(15);
+          }
+        }
+        .navbar-toggler {
+          padding: functions.rem(4);
+          span {
+            height: 16px;
+            width: 16px;
+          }
+        }
+      }
+    }
+
+    .sidebar-collapse-dashboard {
+      &.show {
+        top: 60px;
+      }
+      padding: functions.rem(10) functions.rem(10) 0;
+      .sidebar-nav {
+        a {
+          font-size: functions.rem(13);
+        }
+      }
+    }
+    .main-content {
+      margin-top: functions.rem(80);
+      .content-area {
+        .heading-with-button {
+          h1 {
+            font-size: functions.rem(18);
+          }
+        }
+        .dashboard-blogs {
+          padding: functions.rem(18) 0;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          .blog-card {
+            padding: functions.rem(14);
+            background-color: colors.$accent-light-color;
+            .text-controller-div {
+              .view-mode {
+                h3 {
+                  font-size: functions.rem(15);
+                }
+                p {
+                  font-size: functions.rem(13);
+                }
+              }
+              .edit-mode {
+                h3 {
+                  font-size: functions.rem(15);
+                }
+              }
+            }
+            .actions {
+              button {
+                padding: functions.rem(8);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

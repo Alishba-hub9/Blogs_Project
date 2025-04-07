@@ -1,0 +1,25 @@
+@use "abstracts/mixins";
+@use "abstracts/functions";
+@use "abstracts/colors";
+
+footer {
+  padding: functions.rem(48) 0;
+  .footer-list {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    .footer-icon-stack {
+      background-color: colors.$dark-primary;
+      border-radius: 50%;
+      padding: 25px;
+      &:hover {
+        background-color: #0085a1;
+      }
+    }
+  }
+  .copyright-text {
+    font-style: italic;
+    text-align: center;
+    font-size: functions.rem(14);
+  }
+}

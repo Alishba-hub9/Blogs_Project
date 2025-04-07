@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup Form</title>
+    <link rel="stylesheet" href="dist/css/vendors.min.css" />
+    <link rel="stylesheet" href="dist/css/style.css" />
+  </head>
+  <body>
+    <div class="wrapper-register-page">
+      <div class="container">
+        <div class="register-content">
+          <h1>Create Your Account</h1>
+          <p>Join our community! Sign up to get access to exclusive content and personalized updates.</p>
+          <form method="POST" action="/includes/signup" class="register-form">
+            <input type="text" name="username" placeholder="Enter Username" required />
+            <input type="email" name="email" placeholder="Enter Email" required />
+            <input type="password" name="password" placeholder="Enter Password" required />
+            <button type="submit">Sign Up</button>
+          </form>
+          <p class="mt-4 mb-3">Already have an account? <a href="index">Click here to login</a></p>
+        </div>
+      </div>
+    </div>
+
+    <script src="dist/js/vendors.min.js"></script>
+    <script src="dist/js/script.min.js"></script>
+  </body>
+</html>
