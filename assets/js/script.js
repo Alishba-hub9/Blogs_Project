@@ -405,6 +405,6 @@ $(".floating-btn").on("click", () => {
     {
       scrollTop: blogSection.offset().top,
     },
-    600
+    100
   );
 });
